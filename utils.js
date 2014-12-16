@@ -15,8 +15,11 @@ utils = {
     return cols;
   },
   _checkLastLine: function(data) {
-    if(data[data.length - 1][0] == '') {
+    var control = data[data.length - 1][0] == '';
+    if(control) {
       data = data.slice(0, data.length - 1);
+      return data;
+    } else {
       return data;
     }
   }
