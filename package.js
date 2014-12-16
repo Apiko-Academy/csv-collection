@@ -9,8 +9,9 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0');
   api.use([
     'lines-storage',
-    'striletskyy:papa-parse'
+    'striletskyy:papa-parse',
+    'underscore'
   ], 'server');
   api.export('CsvCollection', 'server');
-  api.addFiles('striletskyy:csv-collection.js');
+  api.addFiles(['striletskyy:csv-collection.js', 'utils.js']);
 });
