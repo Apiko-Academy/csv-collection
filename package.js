@@ -11,5 +11,6 @@ Package.onUse(function(api) {
     'lines-storage',
     'striletskyy:papa-parse'
   ], 'server');
+  api.export('CsvCollection', 'server');
   api.addFiles('striletskyy:csv-collection.js');
 });
