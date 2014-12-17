@@ -13,5 +13,5 @@ Package.onUse(function(api) {
     'underscore'
   ], 'server');
   api.export('CsvCollection', 'server');
-  api.addFiles(['striletskyy:csv-collection.js', 'utils.js']);
+  api.addFiles(['striletskyy:csv-collection.js', 'utils.js', 'writer.js']);
 });

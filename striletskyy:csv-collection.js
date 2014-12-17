@@ -61,6 +61,9 @@ CsvCollection = (function() {
   CsvCollection.prototype.remove = function() {
     throw new Error("Not implemented yet");
   };
+  CsvCollection.prototype.update = function() {
+    throw new Error("Not implemented yet");
+  };
   CsvCollection.prototype.find = function(filter) {
     if(!filter) {
       return this._getAll();
@@ -69,15 +72,12 @@ CsvCollection = (function() {
       return this._filter(filter, values);
     }
   };
-  CsvCollection.prototype.update = function() {
-    throw new Error("Not implemented yet");
-  };
   _.extend(CsvCollection.prototype, {
     _addArray: function(values) {
       if(_private.isAllCompatibility(this.config.properties, values)) {
         values = _private.fillAllProps(this.config.properties, values);
         var csvStr = Papa.unparse(values);
-        LinesStorage.write(this.config.path, csvStr);
+        writer.addToFile(this.config.path, csvStr);
       } else {
         throw new Error("Sorry, you have added not compatibility value.");
       }
@@ -86,7 +86,7 @@ CsvCollection = (function() {
       if(_private.isCompatibility(this.config.properties, value)) {
         value = _private.fillProps(this.config.properties, value);
         var csvStr = Papa.unparse([value]);
-        LinesStorage.write(this.config.path, csvStr);
+        writer.addToFile(this.config.path, csvStr);
       } else {
         throw new Error("Sorry, you have added not compatibility value.");
       }
@@ -95,7 +95,7 @@ CsvCollection = (function() {
       var lines = LinesStorage.read(this.config.path);
       var data = Papa.parse(lines, {
         delimiter: "",	// auto-detect
-        newline: "",	// auto-detect
+        newline: "\r\n",	// auto-detect
         header: false,
         dynamicTyping: false,
         preview: 0,
